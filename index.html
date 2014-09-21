@@ -1,0 +1,815 @@
+<html lang="en">
+<head>
+
+	<!-- start: Meta -->
+	<meta charset="utf-8">
+	<title>Mali: Résultats Élection Présidentielle 2013</title> 
+	<meta name="description" content="Résultat de l'éléction présidentielle au Mali 2013"/>
+	<meta name="keywords" content="Résultat, election, mali, Présidentielle, élections, résultats, Mali" />
+	<meta name="author" content="MaliPresidentielle2013"/>
+	<!-- end: Meta -->
+	
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- end: Mobile Specific -->
+	
+	<!-- start: Facebook Open Graph -->
+	<meta property="og:title" content="Mali présidentielle 2013"/>
+	<meta property="og:description" content="Résultat des éléctions présidentielles  au Mali 2013"/>
+	<meta property="og:type" content="Actualité, nouvelles, Résultat"/>
+	<meta property="og:url" content=" http://malipresidentielle2013.com/"/>
+	<meta property="og:image" content=" http://malipresidentielle2013.com/official-logo.png"/>
+	<!-- end: Facebook Open Graph -->
+
+    <!-- start: CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+	<!-- end: CSS -->
+
+	<link rel="icon" href="http://localhost/~seydou/d3/example/favicon.png" type="images/x-icon" />
+	<!-- Java script -->
+	<script src="d3.v3.min.js"></script>
+	<script src="SpecialReport2.js"></script>
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<style>
+
+div {
+display: block;
+}
+
+path {
+  fill:#c2c2c2;
+  stroke: #fff;
+}
+
+path:hover {
+  fill-opacity: 0.5;
+  color: #fff;
+ 
+}
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+
+/*  TOOTIP*/
+#tooltip {
+  pointer-events: none;
+}
+.fade {
+  -webkit-transition: opacity 0.15s linear;
+  -moz-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  filter: alpha(opacity=0);
+}
+
+.fade.in {
+opacity: 1;
+filter: alpha(opacity=100);
+}
+#tooltip .inner {
+  position: absolute;
+top: 0;
+left: 0;
+width: 300px;
+margin-left: 25px;
+margin-top: -69px;
+background: 
+white;
+background: 
+rgba(255,255,255,0.95);
+padding: 10px;
+padding-top: 5px;
+-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+-moz-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+-ms-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+-o-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+box-shadow: 0 0 4px rgba(0,0,0,0.5);
+pointer-events: none;
+font-size: 12px;
+z-index: 5000;
+}
+
+#tooltip .inner::before {
+border-color: none;
+border-right-color: 
+#ddd;
+border-right-color: 
+rgba(50%,50%,50%,0.6);
+border-width: 8px;
+top: 50%;
+margin-top: -8px;
+}
+
+#tooltip .inner::after, #tooltip .inner::before {
+right: 100%;
+border: solid 
+transparent;
+content: " ";
+height: 0;
+width: 0;
+position: absolute;
+pointer-events: none;
+}
+
+#tooltip .inner::after {
+border-color: none;
+border-right-color: white;
+border-right-color: 
+rgba(255,255,255,0.95);
+border-width: 7px;
+top: 50%;
+margin-top: -7px;
+}
+
+#tooltip .inner::after, #tooltip .inner::before {
+right: 100%;
+border: solid 
+transparent;
+content: " ";
+height: 0;
+width: 0;
+position: absolute;
+pointer-events: none;
+}
+
+#tooltip a.clear {
+position: absolute;
+right: -15px;
+top: -15px;
+pointer-events: all;
+display: none;
+padding: 20px;
+}
+
+a.clear {
+position: absolute;
+right: 13px;
+top: 44px;
+}
+
+i, cite, em, var, address, dfn {
+font-style: italic;
+}
+
+a:-webkit-any-link {
+color: -webkit-link;
+text-decoration: underline;
+cursor: auto;
+}
+
+.icon-remove {
+background-position: -312px 0;
+display: inline-block;
+width: 14px;
+height: 14px;
+margin-top: 1px;
+line-height: 14px;
+}
+
+#tooltip .inner h4 {
+font-size: 14px;
+margin: 0;
+display: block;
+text-align: center;
+border-bottom: 1px solid 
+#ddd;
+padding-bottom: 4px;
+margin-bottom: 8px;
+}
+
+h4 {
+font-size: 18px;
+line-height: 20px;
+display: block;
+-webkit-margin-before: 1.33em;
+-webkit-margin-after: 1.33em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+
+#tooltip .inner .table {
+font-family: 'Futura Today Demibold', Helvetica, Arial, sans-serif;
+text-transform: uppercase;
+font-size: 14px;
+color: 
+#009BFF;
+margin-bottom: 5px;
+}
+
+.table {
+width: 100%;
+margin-bottom: 18px;
+}
+
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+table {
+max-width: 100%;
+background-color: transparent;
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+table {
+display: table;
+border-collapse: separate;
+border-spacing: 2px;
+border-color: 
+gray;
+}
+
+::selection {
+background: 
+#0af;
+color: 
+#fff;
+text-shadow: none;
+}
+
+thead {
+display: table-header-group;
+vertical-align: middle;
+border-color: inherit;
+}
+
+tr {
+display: table-row;
+vertical-align: inherit;
+border-color: inherit;
+}
+
+#tooltip .inner .table th, #tooltip .inner .table td {
+border: none;
+padding: 2px 0;
+}
+
+.table caption + thead tr:first-child th, .table caption + thead tr:first-child td, .table colgroup + thead tr:first-child th, .table colgroup + thead tr:first-child td, .table thead:first-child tr:first-child th, .table thead:first-child tr:first-child td {
+border-top: 0;
+}
+
+.table th:first-child, .table td:first-child {
+text-align: left;
+}
+
+.table thead th {
+vertical-align: bottom;
+}
+
+.table th {
+text-align: center;
+line-height: 15px;
+}
+
+.table td, .table th {
+text-align: right;
+font-size: 12px;
+}
+
+strong, .table th {
+font-family: 'Futura Today Demibold', Helvetica, Arial, sans-serif;
+font-weight: normal;
+}
+
+.table-condensed th, .table-condensed td {
+padding: 4px 5px;
+}
+
+.table th {
+font-weight: bold;
+}
+
+.table th, .table td {
+padding: 8px;
+line-height: 18px;
+text-align: left;
+vertical-align: top;
+border-top: 1px solid #dddddd;
+}
+
+.table td .right, .table th .right, .table td.right, .table th.right {
+text-align: right;
+}
+
+td {
+vertical-align: top;
+}
+
+tbody {
+display: table-row-group;
+vertical-align: middle;
+border-color: inherit;
+}
+
+td, th {
+display: table-cell;
+vertical-align: inherit;
+}
+
+.muted {
+color: 
+#999999;
+}
+
+.pull-right {
+float: right;
+}
+.resultSidebar li {
+	margin-bottom:12px;
+	list-style: none;
+}
+
+.color_modibosidibe {
+	fill:#1E9AD0;
+}
+.color_soumailacisse {
+	fill:#02813C;
+}
+.color_ibrahimboubacarkeita {
+	fill:#F7B554;
+}
+.color_dramanedembele {
+	fill:#EB1D2A;
+}
+.color_soumanasako {
+	fill:#FCF542;
+}
+.color_moussamara {
+	fill:#69B44B;
+}
+.color_autrescandidats {
+	fill:#D4D4D4;
+}
+.color_lesautrescandidats {
+	fill:#D4D4D4;
+}
+.color_oumarmariko {
+	fill:#EEDC16;
+}
+.color_housseiniguindo {
+	fill:#0099FF;
+}
+.color_haidaraaissetacisse {
+	fill:#FD007F;
+}
+.color_oumaribrahimtoure {
+	fill:#6c4025;
+}
+.color_cheickmodibodiarra {
+	fill:#81a3d0;
+}
+
+.mapBackground {
+	/*background: white url(img/map-bg.png);*/
+}
+
+</style>
+<body>
+	<!--start: Header -->
+	<header>
+
+	<!--start: Container -->
+		<div class="container">
+			
+			<!--start: Navbar -->
+			<div class="navbar navbar-inverse">
+	    		<div class="navbar-inner">
+	          		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	            		<span class="icon-bar"></span>
+	            		<span class="icon-bar"></span>
+	            		<span class="icon-bar"></span>
+	          		</a>
+					<a class="brand" href="index.html"><img src="official-logo.png"></i>Mali  <span>présidentielle</span> 20<span>13</span>.</a>
+	          		<div class="nav-collapse collapse">
+	            		<ul class="nav">
+							<li class="active"><a href="index.html">Deuxième Tour</a></li>
+	              			<li ><a href="index2.html">Premier Tour</a></li>
+							<li class="dropdown">
+	                			<a href="#" class="dropdown-toggle" data-toggle="dropdown"></a>
+	              			</li>
+															
+	            		</ul>
+	          		</div>
+	        	</div>
+	      	</div>
+			<!--end: Navbar -->
+			
+		</div>
+		<!--end: Container-->	
+	</header>
+	<!--end: Header-->
+
+	<!-- start: Page Title -->
+	<div id="page-title">
+
+		<div id="page-title-inner">
+
+			<!-- start: Container -->
+			<div class="container">
+
+				<h2><i class="ico-google-maps ico-white"></i>Résultats Élection (Deuxième Tour)</h2>
+
+			</div>
+			<!-- end: Container  -->
+
+		</div>	
+
+
+	</div>
+	<!-- end: Page Title -->
+
+	<!--start: Wrapper-->
+	<div id="wrapper">
+				
+		<!--start: Container -->
+    	<!-- <div class="container">
+			<div class="alert alert-info">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<h2><strong>INFORMATION !</strong>  La COUR  CONSTITUTIONNELLE devrait proclamer les résultats définitifs du premier tour au plus tard mercredi.</h2>
+			</div>
+		</div> -->
+
+		<!--start: Container -->
+    	<div class="container">	
+			<!--start: Row -->
+	    	<div class="row">
+		
+				<div class="span7">
+					
+					<!-- start: About Us -->
+					<div id="about">
+						<div class="title"><h3>Cliquez sur une région pour zoomer  et  survolez  la carte pour les résultats</h3></div>
+
+						<div class="mapBackground">
+						<div class="clients-carousel">	
+						<ul class="slides clients">	
+
+							<div id="zoom_back", style="float: left">
+				        		<button class="btn" id="zoom_out" style="visibility: hidden; "> <i class="mini-color mini-ico-zoom-out"></i> Zoom arrière</button>
+							</div>
+							<div id="zoom_bamako">
+				        		<button class="btn" id="zoom_out" style="visibility: hidden; "> </button>
+							</div>
+							<div id="electoralmap"></div>
+						</ul>	
+						</div>	
+						</div>
+					</div>	
+					<!-- end: About Us -->
+				</div>
+				<!-- end: span8 -->
+			
+
+
+				<div class="span5">
+
+					<div id="sidebar-region-name">
+						<div class="title"><h3></h3></div>
+					</div>	
+
+
+
+					<!-- start: Row -->
+					<div class="row">
+
+						<!-- start: photo de profile -->
+						<div class="span1">
+							<div class="mapBackground">
+								<ul class="resultSidebar">
+									<li id="sidebar-first-image">
+										<img src="" alt="team member">
+									</li>
+								</ul>
+							</div>	
+
+						</div>
+
+						<div class="span4">
+
+							<div id="sidebar">
+
+								<ul  class="progress-bar">
+						        	<li id="sidebar-first-progress-bar">
+						            	<h5></h5>
+						            	<!-- <div class="meter"><span style="width: 40%"></span></div> -->
+						            	<div id="sidebar_first_bar"></div>
+						          	</li>
+					      		</ul>
+				      		</div>
+				      	<!-- end: Skills -->
+
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<!-- start: photo de profile -->
+						<div class="span1">
+
+							<ul class="resultSidebar">
+								<li id="sidebar-second-image">
+									<img src="" alt="team member">
+								</li>
+							</ul>	
+
+						</div>
+
+						<div class="span4">
+
+							<div id="sidebar">
+
+								<ul  class="progress-bar">
+						        	<li id="sidebar-second-progress-bar">
+						            	<h5></h5>
+						            	<div id="sidebar_second_bar"></div>
+						          	</li>
+					      		</ul>
+				      		</div>
+				      	<!-- end: Skills -->
+
+						</div>
+
+					</div>
+					<!-- end: row -->	
+
+
+
+				</div>
+
+			</div>
+			<!-- end: row -->	
+
+		</div>
+
+		<div class= "container">
+			<div class="alert">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<h2><strong>Attention pour les utilisateurs d'internet explorer !</strong>  Nos services ne sont  pour le moment pas disponible sur les versions inférieurs à internet explorer 10.  Nous vous encourageons vivement à faire une mise à jour pour avoir accès aux résultats.</h2>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	</div>
+	<!-- end: Wrapper  -->			
+
+    <!-- start: Footer Menu -->
+	<div id="footer-menu" class="hidden-tablet hidden-phone">
+
+		<!-- start: Container -->
+		<div class="container">
+			
+			<!-- start: Row -->
+			<div class="row">
+
+				<!-- start: Footer Menu Logo -->
+				<div class="span6">
+					<div id="footer-menu-logo">
+						<div id="logo-chart"></div><a class="brand" href="index.html">Mali<span>présidentielle</span>20<span>13</span>.</a>
+					</div>
+				</div>
+				<!-- end: Footer Menu Logo -->
+
+				<!-- start: Footer Menu Links-->
+				<div class="span5">
+					
+					<div id="footer-menu-links">
+
+						<!-- <ul id="footer-nav">
+
+							<li><a href="index.html">Accueil</a></li>
+
+						</ul> -->
+
+					</div>
+					
+				</div>
+				<!-- end: Footer Menu Links-->
+
+				<!-- start: Footer Menu Back To Top -->
+				<div class="span1">
+						
+					<div id="footer-menu-back-to-top">
+						<a href="#"></a>
+					</div>
+				
+				</div>
+				<!-- end: Footer Menu Back To Top -->
+			
+			</div>
+			<!-- end: Row -->
+			
+		</div>
+		<!-- end: Container  -->	
+
+	</div>	
+	<!-- end: Footer Menu -->
+
+	<!-- start: Footer -->
+	<div id="footer">
+		
+		<!-- start: Container -->
+		<div class="container">
+			
+			<!-- start: Row -->
+			<div class="row">
+
+				<div class="span2">
+					
+
+				</div>
+
+				<!-- start: About -->
+				<div class="span3">
+					
+					<h3>À propos de nous</h3>
+					<p>
+						Mali présidentielle 2013 est une plate-forme web. Notre but est de faciliter à tout un chacun la consultation des résultats  aux élections présidentielles Maliennes de 2013. Nous vous souhaitons une bonne consultation. 
+					</p>
+						
+				</div>
+				<!-- end: About -->
+
+				<!-- start: Photo Stream -->
+				<div class="span2">
+					
+
+				</div>
+				<!-- end: Photo Stream -->
+
+				<div class="span3">
+				
+					<!-- start: Follow Us -->
+					<h3>Suivez nous!</h3>
+					<ul class="social-grid">
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-twitter">
+											<a href="http://twitter.com/MPresidentielle"></a>
+										</div>
+										<div class="social-info-back social-twitter-hover">
+											<a href="http://twitter.com/MPresidentielle"></a>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="social-item">				
+								<div class="social-info-wrap">
+									<div class="social-info">
+										<div class="social-info-front social-facebook">
+											<a href="http://facebook.com/malipresidentielle2013"></a>
+										</div>
+										<div class="social-info-back social-facebook-hover">
+											<a href="http://facebook.com/malipresidentielle2013"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+
+					</ul>
+					<!-- end: Follow Us -->
+				
+				
+				</div>
+				
+			</div>
+			<!-- end: Row -->	
+			
+		</div>
+		<!-- end: Container  -->
+
+	</div>
+	<!-- end: Footer -->
+
+	<!-- start: Copyright -->
+	<div id="copyright">
+	
+		<!-- start: Container -->
+		<div class="container">
+		
+			<div class="span12">
+				<p>
+					&copy; 2013, <a href="">MaliPresidentielle2013</a>. Conception par <a href="">Seydou Konaté</a>  
+				</p>
+			</div>
+	
+		</div>
+		<!-- end: Container  -->
+		
+	</div>	
+	<!-- end: Copyright -->
+
+
+            <!-- Tooltip -->	
+
+			<div id="tooltip">
+			  <div class="inner">
+			  <a class="clear" href="#">
+			  	<i class="icon-remove icon-white"></i>
+			  </a>	
+			  <h4 id="tooltiptitle"></h4>
+			  <table class="table table-condensed">
+			    <thead>
+			      <tr>
+			        <th></th>
+			        <th class="right">Votes</th>
+			        <th></th>
+			    </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td id="firstcandidat">
+			        <i class="mini-ico-ok"></i>
+			        </td>
+			        <td id="firstvotes", class="right"></td>
+			        <td id="firstpercent", class="right"></td>
+			      </tr>  
+			      <tr>
+			        <td id="secondcandidat"></td>
+			        <td id="secondvotes", class="right"></td>
+			        <td id="secondpercent", class="right"></td>
+			      </tr>
+			      <tr>
+			        <td id="thirdcandidat"></td>
+			        <td id="thirdvotes", class="right"></td>
+			        <td id="thirdpercent", class="right"></td>
+			      </tr>
+			      <tr>
+			        <td id="fourthcandidat"></td>
+			        <td id="fourthvotes", class="right"></td>
+			        <td id="fourthpercent", class="right"></td>
+			      </tr>
+			      <tr>  
+			        <td id="othercandidat"></td>
+			        <td id="othervotes", class="right"></td>
+			        <td id="otherpercent", class="right"></td>
+			      </tr>
+			    </tbody>  
+			  </table>
+			  <span id="resultreport", class="muted"></span>
+			  <span id="circonscriptiontotal", class="pull-right"></span>
+			  </div>
+			</div>
+
+			
+
+
+<script type="text/javascript">stLight.options({publisher: "337b898a-5219-4c72-af86-3a40516d5137", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+</script>
+<script>
+var options={ "publisher": "337b898a-5219-4c72-af86-3a40516d5137", "position": "left", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "googleplus", "email"]}};
+var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+</script>
+
+<script src="js/jquery-1.8.2.js"></script>
+<script src="js/bootstrap.js"></script>			
+
+<!-- Call the map script -->	
+<script type="text/javascript">
+
+	SR.DrawAll();
+
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42777943-1', 'malipresidentielle2013.com');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
